@@ -1,26 +1,23 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log('MongoDB connected'))
-.catch(err => console.error(err));
+const services = [
+  { id: 1, name: 'Oil Change', price: 500 },
+  { id: 2, name: 'Engine Repair', price: 5000 },
+  { id: 3, name: 'Tire Replacement', price: 1500 },
+];
 
-// Example API route
-app.get('/', (req, res) => {
-  res.send('Garage backend running!');
+app.get('/api/services', (req, res) => {
+  res.json(services);
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

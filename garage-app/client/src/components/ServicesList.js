@@ -25,7 +25,7 @@ const ServicesList = () => {
       <ul>
         {services.map(service => (
           <li key={service.id}>
-            {service.name} - ₹{service.price}
+            {service.name} — ₹{service.price}
           </li>
         ))}
       </ul>
